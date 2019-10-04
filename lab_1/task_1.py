@@ -1,5 +1,5 @@
 def task_1():
-    return ''
+    return '\n'.join([i*str(i) for i in range(10)]) + '\n'
 
 
 assert task_1() == '''
