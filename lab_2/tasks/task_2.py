@@ -24,8 +24,8 @@ if __name__ == "__main__":
         ('push', 26), 
         ('push', 20), 
         ('pop',), 
-        ('show_max',), 
-        ('push', 91), 
+        ('show_max',),
+        ('push', 91),
         ('show_max',)
     ]
     assert stack_operation(commands) == [26, 91]

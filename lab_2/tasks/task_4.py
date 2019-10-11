@@ -8,7 +8,7 @@ def count_letters(msg):
     :return: Most frequent pair char - count in message.
     :rtype: list
     """
-    pass
+    
 
 
 if __name__ == '__main__':

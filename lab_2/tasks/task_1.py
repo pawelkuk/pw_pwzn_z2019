@@ -14,8 +14,13 @@ def counting_sort(values, _max, _min=0):
     :type _min: int
     :return:
     """
-    pass
-
+    count = (_max - _min) * [0]
+    for i in values:
+        count[i] += 1
+    res = []
+    for i, j in enumerate(count):
+        res += j*[_min + i]
+    return res
 
 if __name__ == '__main__':
     assert counting_sort(
