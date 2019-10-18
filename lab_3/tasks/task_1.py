@@ -16,16 +16,19 @@ def parse_input(input):
     str_list = map(lambda x: x.split(' '), stripped_input)
     return list(map(lambda x: [int(x[0]), int(x[1])], str_list))    
 
-_input = """
+if __name__ == '__main__':
+    _input = """
 1 5
-1 6
+1 6 7
 3 2
 1 10
 1 10
 1 6
 2 5
 3 2
-
-
-"""
-assert parse_input(_input) == [[1, 5], [1, 6], [3, 2], [1, 10], [1, 10], [1, 6], [2, 5], [3, 2]]
+    
+    
+    """
+    assert parse_input(_input) == [
+        [1, 5], [1, 6, 7], [3, 2], [1, 10], [1, 10], [1, 6], [2, 5], [3, 2]
+    ]
