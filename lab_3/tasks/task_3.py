@@ -16,7 +16,7 @@ Funkcje group_dates oraz format_day mają pomoc w grupowaniu kodu.
 UWAGA: Proszę ograniczyć użycie pętli do minimum.
 """
 import datetime
-
+import calendar
 
 def sort_dates(date_str, date_format=''):
     """
@@ -29,6 +29,16 @@ def sort_dates(date_str, date_format=''):
     :return: sorted desc list of utc datetime objects
     :rtype: list
     """
+    tmp = date_str.strip().split('\n')
+    unsorted_strptime_list = list(map(lambda x: x.strip().split(' '), tmp))
+    month_to_number_dict = { k:str(v) for v, k in enumerate(calendar.month_abbr)}
+    for row in unsorted_strptime_list:
+        row[2] = month_to_number_dict[row[2]]
+    unsorted_strptimes = list(map(lambda x: ' '.join(x[1:]), unsorted_strptime_list))
+    unsorted_datetimes = list(map(
+        lambda x: datetime.datetime.strptime(x, '%d %m %Y %H:%M:%S %z'),
+        unsorted_strptimes))
+    return sorted(unsorted_datetimes, reverse=True)
 
 
 def group_dates(dates):
@@ -42,7 +52,7 @@ def group_dates(dates):
 
 
 def format_day(day, events):
-    """
+    """-0700
     Formats message for one day.
 
     :param day: Day object.
@@ -76,7 +86,6 @@ if __name__ == '__main__':
     Sat 02 May 2015 19:54:36 +0530
     Fri 01 May 2015 13:54:36 -0000
     """
-
     assert sort_dates(dates) == [
         datetime.datetime(2015, 5, 10, 20, 54, 36, tzinfo=datetime.timezone.utc),
         datetime.datetime(2015, 5, 10, 13, 54, 36, tzinfo=datetime.timezone.utc),
