@@ -12,8 +12,9 @@ def parse_input(input):
     :return: list of parsed list of integers
     :rtype: list
     """
-    pass
-
+    stripped_input = input.strip().split('\n') 
+    str_list = map(lambda x: x.split(' '), stripped_input)
+    return list(map(lambda x: [int(x[0]), int(x[1])], str_list))    
 
 _input = """
 1 5
