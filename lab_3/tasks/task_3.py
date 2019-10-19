@@ -1,5 +1,4 @@
 from itertools import groupby
-import pytz
 """
 Zadanie za 2 pkt.
 
@@ -84,7 +83,7 @@ def parse_dates(date_str, date_format=''):
     for day, dates in grouped_by_day:
         result.append(str(day))
         for date in dates:
-            result.append('\t' + str(date.astimezone(pytz.utc).time()))
+            result.append('\t' + str(date.astimezone(datetime.timezone.utc).time()))
         result.append('----')
     result.pop()
     return '\n'.join(result)
