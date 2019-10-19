@@ -1,3 +1,5 @@
+from itertools import groupby
+import pytz
 """
 Zadanie za 2 pkt.
 
@@ -49,7 +51,7 @@ def group_dates(dates):
     :type dates: list
     :return:
     """
-
+    return groupby(dates, lambda x: x.date())
 
 def format_day(day, events):
     """-0700
@@ -76,8 +78,16 @@ def parse_dates(date_str, date_format=''):
     :return: parsed events
     :rtype: str
     """
-    pass
-
+    dates = sort_dates(date_str)
+    grouped_by_day = group_dates(dates)
+    result = []
+    for day, dates in grouped_by_day:
+        result.append(str(day))
+        for date in dates:
+            result.append('\t' + str(date.astimezone(pytz.utc).time()))
+        result.append('----')
+    result.pop()
+    return '\n'.join(result)
 
 if __name__ == '__main__':
     dates = """
@@ -94,11 +104,11 @@ if __name__ == '__main__':
     ]
 
     assert parse_dates(dates) == """2015-05-10
-    \t20:54:36
-    \t13:54:36
-    ----
-    2015-05-02
-    \t14:24:36
-    ----
-    2015-05-01
-    \t13:54:36"""
+\t20:54:36
+\t13:54:36
+----
+2015-05-02
+\t14:24:36
+----
+2015-05-01
+\t13:54:36"""
