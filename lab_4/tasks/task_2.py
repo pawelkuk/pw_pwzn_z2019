@@ -9,12 +9,41 @@ oraz metodę fabryki korzystającą z metody statycznej tworzącej nowy wektor
 z dwóch punktów.
 Wszystkie metody sprawdzają wymiar.
 """
+import math
 
 
 class Vector:
-    dim = None  # Wymiar vectora
+    @property
+    def dim(self):
+        return self._dim  # Wymiar vectora
     def __init__(self, *args):
-        raise NotImplemented
+        self.components = args
+        self._dim = len(args)
+
+    def __add__(self, vector):
+        t = (i + j for i,j in zip(self.components, vector.components))
+        return Vector(*t)
+    
+    def __str__(self):
+        return f'Vector{self.components}'
+    
+    def __eq__(self, vector):
+        flags = [True for i, j in zip(self.components, vector.components) if i != j]
+        return not bool(flags)
+
+    def __sub__(self, vector):
+        t = (i - j for i,j in zip(self.components, vector.components))
+        return Vector(*t)
+    
+    def __mul__(self, val):
+        if isinstance(val, Vector):
+            return sum(i * j for i, j in zip(self.components, val.components))
+        else:
+            return Vector(*(i * val for i in self.components))
+
+    def __len__(self):
+        return int(math.sqrt(sum(i**2 for i in self.components)))
+        
 
     @staticmethod
     def calculate_vector(beg, end):
@@ -28,7 +57,7 @@ class Vector:
         :return: Calculated vector
         :rtype: tuple
         """
-        raise NotImplemented
+        return tuple(j - i for i, j in zip(beg, end))
 
     @classmethod
     def from_points(cls, beg, end):
@@ -43,7 +72,7 @@ class Vector:
         :return: New vector
         :rtype: tuple
         """
-        raise NotImplemented
+        return Vector(*Vector.calculate_vector(beg, end))
 
 
 if __name__ == '__main__':
