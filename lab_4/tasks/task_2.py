@@ -13,9 +13,11 @@ import math
 
 
 class Vector:
+
     @property
     def dim(self):
         return self._dim  # Wymiar vectora
+
     def __init__(self, *args):
         self.components = args
         self._dim = len(args)
@@ -82,6 +84,8 @@ if __name__ == '__main__':
     assert v1 - v2 == Vector(0,0,0)
     assert v1 * 2 == Vector(2,4,6)
     assert v1 * v2 == 14
-    assert len(Vector(3,4)) == 5.
+    assert len(Vector(3,4)) == 2
+    assert Vector(3,4).dim == 2
+    assert Vector(3,4).len == 5.
     assert Vector.calculate_vector([0, 0, 0], [1,2,3]) == (1,2,3)
     assert Vector.from_points([0, 0, 0], [1,2,3]) == Vector(1,2,3)
