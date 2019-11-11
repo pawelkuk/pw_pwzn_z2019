@@ -14,15 +14,15 @@ class CalculatorError(Exception):
     pass
 
 
-class WrongOperation(Exception):
+class WrongOperation(CalculatorError, Exception):
     pass
 
 
-class NotNumberArgument(Exception):
+class NotNumberArgument(CalculatorError, Exception):
     pass
 
 
-class EmptyMemory(Exception):
+class EmptyMemory(CalculatorError, Exception):
     pass
 
 
@@ -53,8 +53,16 @@ class Calculator:
         """
         if operator in self.operations:
             arg2 = arg2 or self.memory
+            if arg2 == None:
+                raise EmptyMemory from ZeroDivisionError
             if arg2:
-                self._short_memory = self.operations[operator](arg1, arg2)
+                try:
+                    self._short_memory = self.operations[operator](arg1, arg2)
+                except ZeroDivisionError as exc:
+                    raise ZeroDivisionError from exc
+                except TypeError as exc:
+                    raise NotNumberArgument('Argument provided is not a number') from exc
+                
                 return self._short_memory
 
     @property
@@ -71,6 +79,8 @@ class Calculator:
 
     def in_memory(self):
         """Prints memorized value."""
+        if self.memory == None:
+            raise EmptyMemory('Memory is empty')
         print(f"Zapamiętana wartość: {self.memory}")
 
 
