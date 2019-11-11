@@ -19,12 +19,13 @@ Na (3 pkt.):
 po której będzie dziedziczyć Square,
 tzn. Square dziediczy i z Diamond i Rectangle.
 - Klasa wprowadza atrybuty przekątnych (e i f) oraz metody:
--- are_diagonals_equal: sprawdź równość przekątnych,
+-- are_diagonals_equal: s Circle ma posiadać tylko atrybut r (radius). Circle ma posiadać tylko atrybut r (radius). Circle ma posiadać tylko atrybut r (radius). Circle ma posiadać tylko atrybut r (radius). Circle ma posiadać tylko atrybut r (radius). Circle ma posiadać tylko atrybut r (radius).prawdź równość przekątnych,
 -- to_square: po sprawdzeniu równości przekątnych zwróci instancję
 klasy Square o takich przekątnych.
 - Zwiąż ze sobą atrybuty e i f (w klasie Diamond) oraz a, b, e i f
 (w klasie Square)
 """
+import math
 
 
 class Figure:
@@ -34,26 +35,50 @@ class Figure:
     def perimeter(self):
         raise NotImplementedError
 
+    @property
     def name(self):
-        raise NotImplementedError
+        return self.__class__.__name__
 
     def __str__(self):
         return (
-            f'{self.name()}: area={self.area():.3f}, '
-            f'perimeter={self.perimeter():.3f}'
+            f'{self.name}: area={self.area:.3f}, '
+            f'perimeter={self.perimeter:.3f}'
         )
 
 
-class Circle:
-    pass
+class Circle(Figure):
+    def __init__(self, r):
+        self.r = r
+        super()
+    
+    @property
+    def area(self):
+        return math.pi * self.r**2 
+    
+    @property
+    def perimeter(self):
+        return 2 * math.pi * self.r 
+    
+    
 
+class Rectangle(Figure):
+    def __init__(self,  a, b):
+        self.a = a
+        self.b = b
+        super()
+    
+    @property
+    def area(self):
+        return self.a * self.b
+    
+    @property
+    def perimeter(self):
+        return 2 * (self.a  + self.b)
 
-class Rectangle:
-    pass
-
-
-class Square:
-    pass
+class Square(Rectangle):
+    def __init__(self, a):
+        self.a = a
+        self.b = a
 
 
 class Diamond:
@@ -69,7 +94,7 @@ if __name__ == '__main__':
 
     # print("Square")
     sqr_1 = Square(4)
-    assert str(sqr_1) == 'Square: area=8.000, perimeter=16.000'
+    assert str(sqr_1) == 'Square: area=16.000, perimeter=16.000'
 
     diam_1 = Diamond(6, 8)
     assert str(diam_1) == 'Diamond: area=24.000, perimeter=20.000'
