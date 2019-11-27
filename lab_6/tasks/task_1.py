@@ -38,6 +38,28 @@ import  csv
 from collections import namedtuple
 import itertools
 
+
+genders = ('male', 'female')
+
+def insert_into(animals, animal):
+    # min_mass_animal = min(animals, key=lambda anim: (anim.genus == animal.genus,
+    #                                                  anim.gender == animal.gender,
+    #                                                  float(anim.mass.split(' ')[0])))
+    selected_animals = filter(lambda anim: (anim.genus == animal.genus,
+                                            anim.gender == animal.gender), animals)
+    sorted_animals = sorted(selected_animals, key=lambda anim: float(anim.mass.split(' ')[0]))
+    if  len(sorted_animals) > 0:
+        min_animal = min([animal, sorted_animals[0]], key=lambda anim: float(anim.mass.split(' ')[0]))
+    else:
+        animals.append(animal)
+        return
+    if min_animal not in animals:
+        idx = animals.index(sorted_animals[0])
+        del animals[idx]
+        animals.append(animal)
+    return
+
+
 def select_animals(input_path, output_path, compressed=False):
     with open(input_path, 'r') as file_:
         reader = csv.reader(file_, delimiter=',')
@@ -48,10 +70,11 @@ def select_animals(input_path, output_path, compressed=False):
         genus = set()
         for row in reader:
             animal = Animal(*row)
-            animals.append(animal)
             genus.add(animal.genus)
+            # insert_into(animals, animal)
+            animals.append(animal)
 
-        genders = ('male', 'female')
+        # import ipdb; ipdb.set_trace()
 
         selected_animals = []
         for gender, genu in itertools.product(genders, genus):
@@ -65,6 +88,8 @@ def select_animals(input_path, output_path, compressed=False):
                                 key = lambda anim: (anim.genus,
                                                     anim.name))
         
+        
+
         if compressed == False:
             with open(output_path, 'w') as _file:
                 writer = csv.writer(_file, delimiter=',', quotechar="*")
@@ -92,14 +117,10 @@ def select_animals(input_path, output_path, compressed=False):
                                                  gender[animal.gender],
                                                  '%.3e' % mass])
                     compressed_animals.append(compressed_animal)
-                # import ipdb; ipdb.set_trace()
                 
                 for row in compressed_animals:
                     _file.write(row + '\n')
                 
-
-
-
 
 if __name__ == '__main__':
     input_path = Path('s_animals.txt')

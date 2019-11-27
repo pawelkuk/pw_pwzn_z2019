@@ -108,3 +108,6 @@ venv.bak/
 .mypy_cache/
 
 .vscode/
+
+s_animals_s.txt
+s_animals_sc.txt
