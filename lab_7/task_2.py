@@ -54,11 +54,11 @@ def iterate(board):
     :rtype: np.ndarray
     """
     number_of_neighbors = calculate_neighbours(board)
-    dead = board == False
+    is_dead = board == False
     is_alive = board
 
     # rule 2
-    become_alive = (number_of_neighbors == 3) & dead
+    become_alive = (number_of_neighbors == 3) & is_dead
 
     # rule 3 a)
     has_2_or_3_neighbors = (2 <= number_of_neighbors) & (number_of_neighbors <= 3)
