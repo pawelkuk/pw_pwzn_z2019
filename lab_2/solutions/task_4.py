@@ -14,7 +14,7 @@ def count_letters(msg):
             counts[elem] = 1
         else:
             counts[elem] += 1
-    _max, max_key = 0, 'aa'
+    _max, max_key = 0, "aa"
     for key, val in counts.items():
         if val > _max or (val == _max and key < max_key):
             _max = val
@@ -22,7 +22,7 @@ def count_letters(msg):
     return max_key, _max
 
 
-if __name__ == '__main__':
-    msg = 'Abrakadabra'
-    assert count_letters(msg) == ('a', 4)
-    assert count_letters('za') == ('a', 1)
+if __name__ == "__main__":
+    msg = "Abrakadabra"
+    assert count_letters(msg) == ("a", 4)
+    assert count_letters("za") == ("a", 1)

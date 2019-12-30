@@ -18,12 +18,7 @@ class EmptyMemory(CalculatorError):
 
 
 class Calculator:
-    operations = {
-        '+': add,
-        '-': sub,
-        '*': mul,
-        '/': truediv,
-    }
+    operations = {"+": add, "-": sub, "*": mul, "/": truediv}
 
     def __init__(self):
         self._memory = None
@@ -52,8 +47,7 @@ class Calculator:
         try:
             arg2 = arg2 if arg2 is not None else self.memory
             res = self.operations[operator](
-                self._cast_to_num(arg1),
-                self._cast_to_num(arg2),
+                self._cast_to_num(arg1), self._cast_to_num(arg2)
             )
             self._short_memory = self._cast_to_num(res)
         except KeyError:
@@ -85,17 +79,17 @@ class Calculator:
         print(f"Zapamiętana wartość: {self.memory}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     b = None
     calc = Calculator()
 
     try:
-        b = calc.run('+', 1, 'a')
+        b = calc.run("+", 1, "a")
     except CalculatorError as exc:
         assert type(exc) == NotNumberArgument
         assert b is None
     try:
-        b = calc.run('^', 2, 3)
+        b = calc.run("^", 2, 3)
     except CalculatorError as exc:
         assert type(exc) == WrongOperation
         assert b is None
@@ -106,7 +100,7 @@ if __name__ == '__main__':
     else:
         raise AssertionError
     try:
-        b = calc.run('/', 2)
+        b = calc.run("/", 2)
     except CalculatorError as exc:
         assert type(exc) == EmptyMemory
         assert b is None
@@ -114,6 +108,6 @@ if __name__ == '__main__':
         raise AssertionError
 
     try:
-        b = calc.run('/', 1, 0)
+        b = calc.run("/", 1, 0)
     except CalculatorError as exc:
         assert type(exc.__cause__) == ZeroDivisionError

@@ -43,8 +43,7 @@ class Figure:
 
     def __str__(self):
         return (
-            f'{self.name()}: area={self.area:.3f}, '
-            f'perimeter={self.perimeter:.3f}'
+            f"{self.name()}: area={self.area:.3f}, " f"perimeter={self.perimeter:.3f}"
         )
 
     @classmethod
@@ -99,7 +98,7 @@ class Diamond(Figure):
 
     def to_square(self):
         if self.are_diagonals_equal():
-            return(Square.create_from_diagonal(self.e))
+            return Square.create_from_diagonal(self.e)
 
 
 class Rectangle(Figure):
@@ -185,22 +184,22 @@ class Square(Rectangle, Diamond):
         return cls(cls._diagonal_to_side(e))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     circle_1 = Circle(1)
-    assert str(circle_1) == 'Circle: area=3.142, perimeter=6.283'
+    assert str(circle_1) == "Circle: area=3.142, perimeter=6.283"
 
     rec_1 = Rectangle(2, 4)
-    assert str(rec_1) == 'Rectangle: area=8.000, perimeter=12.000'
+    assert str(rec_1) == "Rectangle: area=8.000, perimeter=12.000"
 
     # print("Square")
     sqr_1 = Square(4)
-    assert str(sqr_1) == 'Square: area=16.000, perimeter=16.000'
+    assert str(sqr_1) == "Square: area=16.000, perimeter=16.000"
 
     diam_1 = Diamond(6, 8)
-    assert str(diam_1) == 'Diamond: area=24.000, perimeter=20.000'
+    assert str(diam_1) == "Diamond: area=24.000, perimeter=20.000"
 
     diam_2 = Diamond(1, 1)
-    assert str(diam_2) == 'Diamond: area=0.500, perimeter=2.828'
+    assert str(diam_2) == "Diamond: area=0.500, perimeter=2.828"
 
     sqr_3 = diam_2.to_square()
-    assert str(sqr_3) == 'Square: area=0.500, perimeter=2.828'
+    assert str(sqr_3) == "Square: area=0.500, perimeter=2.828"

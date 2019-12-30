@@ -11,9 +11,9 @@ użyj wartość z pamięci kalkulatora. Obsłuż przypadki skrajne.
 class Calculator:
 
     operations = {
-        '+': lambda a, b: a + b,
-        '-': lambda a, b: a - b,
-        '/': lambda a, b: a / b,
+        "+": lambda a, b: a + b,
+        "-": lambda a, b: a - b,
+        "/": lambda a, b: a / b,
     }
 
     @property
@@ -26,7 +26,7 @@ class Calculator:
         # ostatniej wykonanej operacji, tak by metoda memorize przypisywała
         # wynik zapisany w tym atrybucie
         self._short_memory = None
-    
+
     def run(self, operator, arg1, arg2=None):
         """
         Returns result of given operation.
@@ -45,7 +45,7 @@ class Calculator:
             self._short_memory = operation(arg1, arg2)
         else:
             self._short_memory = operation(arg1, self.memory)
-        
+
         return self._short_memory
 
     def memorize(self):
@@ -59,10 +59,10 @@ class Calculator:
         print(f"Zapamiętana wartość: {self.memory}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     calc = Calculator()
-    b = calc.run('+', 1, 2)
+    b = calc.run("+", 1, 2)
     calc.memorize()
     calc.in_memory()
-    c = calc.run('/', 9)
+    c = calc.run("/", 9)
     assert c == 3

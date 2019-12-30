@@ -9,12 +9,7 @@ from operator import add, mul, sub, truediv
 
 
 class Calculator:
-    operations = {
-        '+': add,
-        '-': sub,
-        '*': mul,
-        '/': truediv,
-    }
+    operations = {"+": add, "-": sub, "*": mul, "/": truediv}
 
     def __init__(self):
         self._memory = None
@@ -56,10 +51,10 @@ class Calculator:
         print(f"Zapamiętana wartość: {self.memory}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     calc = Calculator()
-    b = calc.run('+', 1, 2)
+    b = calc.run("+", 1, 2)
     calc.memorize()
     calc.in_memory()
-    c = calc.run('/', 9)
+    c = calc.run("/", 9)
     assert c == 3

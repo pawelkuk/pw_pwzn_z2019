@@ -40,40 +40,37 @@ class Figure:
         return self.__class__.__name__
 
     def __str__(self):
-        return (
-            f'{self.name}: area={self.area:.3f}, '
-            f'perimeter={self.perimeter:.3f}'
-        )
+        return f"{self.name}: area={self.area:.3f}, " f"perimeter={self.perimeter:.3f}"
 
 
 class Circle(Figure):
     def __init__(self, r):
         self.r = r
         super()
-    
+
     @property
     def area(self):
-        return math.pi * self.r**2 
-    
+        return math.pi * self.r ** 2
+
     @property
     def perimeter(self):
-        return 2 * math.pi * self.r 
-    
-    
+        return 2 * math.pi * self.r
+
 
 class Rectangle(Figure):
-    def __init__(self,  a, b):
+    def __init__(self, a, b):
         self.a = a
         self.b = b
         super()
-    
+
     @property
     def area(self):
         return self.a * self.b
-    
+
     @property
     def perimeter(self):
-        return 2 * (self.a  + self.b)
+        return 2 * (self.a + self.b)
+
 
 class Square(Rectangle):
     def __init__(self, a):
@@ -85,22 +82,22 @@ class Diamond:
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     kolo1 = Circle(1)
-    assert str(kolo1) == 'Circle: area=3.142, perimeter=6.283'
+    assert str(kolo1) == "Circle: area=3.142, perimeter=6.283"
 
     rec_1 = Rectangle(2, 4)
-    assert str(rec_1) == 'Rectangle: area=8.000, perimeter=12.000'
+    assert str(rec_1) == "Rectangle: area=8.000, perimeter=12.000"
 
     # print("Square")
     sqr_1 = Square(4)
-    assert str(sqr_1) == 'Square: area=16.000, perimeter=16.000'
+    assert str(sqr_1) == "Square: area=16.000, perimeter=16.000"
 
     diam_1 = Diamond(6, 8)
-    assert str(diam_1) == 'Diamond: area=24.000, perimeter=20.000'
+    assert str(diam_1) == "Diamond: area=24.000, perimeter=20.000"
 
     diam_2 = Diamond(1, 1)
-    assert str(diam_2) == 'Diamond: area=0.500, perimeter=2.828'
+    assert str(diam_2) == "Diamond: area=0.500, perimeter=2.828"
 
     sqr_3 = diam_2.to_square()
-    assert str(sqr_3) == 'Square: area=0.500, perimeter=2.828'
+    assert str(sqr_3) == "Square: area=0.500, perimeter=2.828"

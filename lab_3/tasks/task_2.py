@@ -1,6 +1,7 @@
 from task_1 import parse_input
 from collections import defaultdict
 
+
 def check_frequency(input):
     """
     Perform counting based on input queries and return queries result.
@@ -20,7 +21,7 @@ def check_frequency(input):
     :rtype: list
     """
     result = []
-    operation_value_pairs = parse_input(input) 
+    operation_value_pairs = parse_input(input)
     working_dictionary = defaultdict(int)
     for operation, value in operation_value_pairs:
         if operation == 1:
@@ -31,6 +32,7 @@ def check_frequency(input):
         elif operation == 3:
             result.append(working_dictionary[value])
     return result
+
 
 _input = """
 1 5
@@ -45,5 +47,5 @@ _input = """
 
 
 """
-if __name__ == '__main__':
+if __name__ == "__main__":
     assert check_frequency(_input) == [0, 0]

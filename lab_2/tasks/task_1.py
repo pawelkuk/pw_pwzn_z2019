@@ -19,11 +19,20 @@ def counting_sort(values, _max, _min=0):
         count[i] += 1
     res = []
     for i, j in enumerate(count):
-        res += j*[_min + i]
+        res += j * [_min + i]
     return res
 
-if __name__ == '__main__':
-    assert counting_sort(
-        [99, 4, 33, 2, 2, 1, 65, 3, 97, 53],
-        100,
-    ) == [1, 2, 2, 3, 4, 33, 53, 65, 97, 99]
+
+if __name__ == "__main__":
+    assert counting_sort([99, 4, 33, 2, 2, 1, 65, 3, 97, 53], 100) == [
+        1,
+        2,
+        2,
+        3,
+        4,
+        33,
+        53,
+        65,
+        97,
+        99,
+    ]

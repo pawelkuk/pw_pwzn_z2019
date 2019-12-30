@@ -67,28 +67,40 @@ def iterate(board):
     return become_alive | stay_alive
 
 
-if __name__ == '__main__':
-    _board = np.array([
-        [False, False, False,  True, False,  True],
-        [ True, False,  True, False, False,  True],
-        [ True,  True, False,  True,  True,  True],
-        [False,  True,  True, False, False,  True],
-        [False, False, False,  True, False, False],
-        [False,  True,  True,  True, False,  True]
-    ])
-    assert (calculate_neighbours(_board) == np.array([
-        [1, 2, 2, 1, 3, 1,],
-        [2, 4, 3, 4, 6, 3,],
-        [3, 5, 5, 3, 4, 3,],
-        [3, 3, 4, 4, 5, 2,],
-        [2, 4, 6, 3, 4, 2,],
-        [1, 1, 3, 2, 3, 0,],
-    ])).all()
-    assert (iterate(_board) == np.array([
-        [False, False, False, False, True, False],
-        [ True, False,  True, False, False,  True],
-        [ True, False, False,  True, False,  True],
-        [True,  True, False, False, False,  True],
-        [False, False, False,  True, False, False],
-        [False, False,  True,  True, True, False],
-    ])).all()
+if __name__ == "__main__":
+    _board = np.array(
+        [
+            [False, False, False, True, False, True],
+            [True, False, True, False, False, True],
+            [True, True, False, True, True, True],
+            [False, True, True, False, False, True],
+            [False, False, False, True, False, False],
+            [False, True, True, True, False, True],
+        ]
+    )
+    assert (
+        calculate_neighbours(_board)
+        == np.array(
+            [
+                [1, 2, 2, 1, 3, 1],
+                [2, 4, 3, 4, 6, 3],
+                [3, 5, 5, 3, 4, 3],
+                [3, 3, 4, 4, 5, 2],
+                [2, 4, 6, 3, 4, 2],
+                [1, 1, 3, 2, 3, 0],
+            ]
+        )
+    ).all()
+    assert (
+        iterate(_board)
+        == np.array(
+            [
+                [False, False, False, False, True, False],
+                [True, False, True, False, False, True],
+                [True, False, False, True, False, True],
+                [True, True, False, False, False, True],
+                [False, False, False, True, False, False],
+                [False, False, True, True, True, False],
+            ]
+        )
+    ).all()

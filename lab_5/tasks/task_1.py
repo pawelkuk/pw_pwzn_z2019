@@ -27,12 +27,7 @@ class EmptyMemory(CalculatorError, Exception):
 
 
 class Calculator:
-    operations = {
-        '+': add,
-        '-': sub,
-        '*': mul,
-        '/': truediv,
-    }
+    operations = {"+": add, "-": sub, "*": mul, "/": truediv}
 
     def __init__(self):
         self._memory = None
@@ -61,8 +56,10 @@ class Calculator:
                 except ZeroDivisionError as exc:
                     raise ZeroDivisionError from exc
                 except TypeError as exc:
-                    raise NotNumberArgument('Argument provided is not a number') from exc
-                
+                    raise NotNumberArgument(
+                        "Argument provided is not a number"
+                    ) from exc
+
                 return self._short_memory
 
     @property
@@ -80,22 +77,22 @@ class Calculator:
     def in_memory(self):
         """Prints memorized value."""
         if self.memory == None:
-            raise EmptyMemory('Memory is empty')
+            raise EmptyMemory("Memory is empty")
         print(f"Zapamiętana wartość: {self.memory}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     b = None
     calc = Calculator()
 
     try:
-        b = calc.run('+', 1, 'a')
+        b = calc.run("+", 1, "a")
     except CalculatorError as exc:
         assert type(exc) == NotNumberArgument
         assert b is None
 
     try:
-        b = calc.run('^', 2, 3)
+        b = calc.run("^", 2, 3)
     except CalculatorError as exc:
         assert type(exc) == WrongOperation
         assert b is None
@@ -108,7 +105,7 @@ if __name__ == '__main__':
         raise AssertionError
 
     try:
-        b = calc.run('/', 2)
+        b = calc.run("/", 2)
     except CalculatorError as exc:
         assert type(exc) == EmptyMemory
         assert b is None
@@ -116,7 +113,7 @@ if __name__ == '__main__':
         raise AssertionError
 
     try:
-        b = calc.run('/', 1, 0)
+        b = calc.run("/", 1, 0)
     except CalculatorError as exc:
         assert type(exc.__cause__) == ZeroDivisionError
         assert b is None

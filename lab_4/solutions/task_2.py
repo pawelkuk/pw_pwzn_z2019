@@ -68,7 +68,7 @@ class Vector:
         :rtype: tuple
         """
         if len(beg) == len(end):
-            return tuple(y-x for x, y in zip(beg, end))
+            return tuple(y - x for x, y in zip(beg, end))
 
     @classmethod
     def from_points(cls, beg, end):
@@ -85,7 +85,7 @@ class Vector:
         return cls(*cls.calculate_vector(beg, end))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     v1 = Vector(1, 2, 3)
     v2 = Vector(1, 2, 3)
     assert v1 + v2 == Vector(2, 4, 6)
@@ -94,6 +94,6 @@ if __name__ == '__main__':
     assert v1 * v2 == 14
     assert len(Vector(3, 4)) == 2
     assert Vector(3, 4).dim == 2
-    assert Vector(3, 4).len == 5.
-    assert Vector.calculate_vector([0,  0,  0], [1, 2, 3]) == (1, 2, 3)
-    assert Vector.from_points([0,  0,  0], [1, 2, 3]) == Vector(1, 2, 3)
+    assert Vector(3, 4).len == 5.0
+    assert Vector.calculate_vector([0, 0, 0], [1, 2, 3]) == (1, 2, 3)
+    assert Vector.from_points([0, 0, 0], [1, 2, 3]) == Vector(1, 2, 3)

@@ -15,25 +15,26 @@ def stack_operation(stack_commands):
     result = []
     stack = []
     for command in stack_commands:
-        if command[0] == 'push':
+        if command[0] == "push":
             stack.append(command[1])
-        elif command[0] == 'pop':
+        elif command[0] == "pop":
             stack.pop()
-        elif command[0] == 'show_max':
+        elif command[0] == "show_max":
             result.append(stack[-1])
     return result
 
+
 if __name__ == "__main__":
     commands = [
-        ('push', 97),
-        ('pop',),
-        ('push', 20), 
-        ('pop',), 
-        ('push', 26), 
-        ('push', 20), 
-        ('pop',), 
-        ('show_max',),
-        ('push', 91),
-        ('show_max',)
+        ("push", 97),
+        ("pop",),
+        ("push", 20),
+        ("pop",),
+        ("push", 26),
+        ("push", 20),
+        ("pop",),
+        ("show_max",),
+        ("push", 91),
+        ("show_max",),
     ]
     assert stack_operation(commands) == [26, 91]

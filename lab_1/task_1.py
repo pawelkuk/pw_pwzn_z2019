@@ -1,8 +1,10 @@
 def task_1():
-    return '\n'.join([i*str(i) for i in range(10)]) + '\n'
+    return "\n".join([i * str(i) for i in range(10)]) + "\n"
 
 
-assert task_1() == '''
+assert (
+    task_1()
+    == """
 1
 22
 333
@@ -12,4 +14,5 @@ assert task_1() == '''
 7777777
 88888888
 999999999
-'''
+"""
+)
