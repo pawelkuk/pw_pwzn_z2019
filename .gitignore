@@ -12,6 +12,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+    breakpoint()
 build/
 develop-eggs/
 dist/
@@ -111,3 +112,5 @@ venv.bak/
 
 s_animals_s.txt
 s_animals_sc.txt
+
+*.csv
