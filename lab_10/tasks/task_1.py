@@ -8,7 +8,7 @@ API_URL = "https://www.metaweather.com/api/"
 def get_cities_woeid(query: str, timeout: float = 5.0) -> Dict[str, int]:
     location_url = urljoin(API_URL, "location/search")
     params = {"query": query}
-    response = requests.get(location_url, params=params)
+    response = requests.get(location_url, params=params, timeout=timeout)
 
     return {doc["title"]: doc["woeid"] for doc in response.json()}
 
