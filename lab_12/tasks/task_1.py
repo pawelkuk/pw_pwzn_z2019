@@ -1,8 +1,14 @@
 def generate_fibonacci(n=100):
-    pass
+    a = 0
+    b = 1
+    if n < 1:
+        raise RuntimeError
+    for i in range(n):
+        yield a
+        a, b = b, a + b
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     assert list(generate_fibonacci(1)) == [0]
     assert list(generate_fibonacci(2)) == [0, 1]
     assert sum(generate_fibonacci(10)) == 88
